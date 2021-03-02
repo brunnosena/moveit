@@ -1,11 +1,14 @@
+
+import { AppProps } from 'next/app';
+import { AuthProvider } from '../contexts/AuthContext';
+import SideBar from '../components/SideBar';
+
 import '../styles/global.css';
-import ChallengesProvider from '../contexts/ChallengesContext'
-function MyApp({ Component, pageProps }) {
+export default function App({ Component, pageProps, router }: AppProps) {
   return (
-    <ChallengesProvider>
+    <AuthProvider>
+      {router.pathname !== '/login' && <SideBar />}
         <Component {...pageProps} />
-    </ChallengesProvider>
+    </AuthProvider>
   )
 }
-
-export default MyApp
